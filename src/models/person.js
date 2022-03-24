@@ -1,16 +1,16 @@
 'use-strict';
 
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('vehicles', {
-    class: {
+  return sequelize.define('person', {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    model: {
+    age: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    color: {
+    job: {
       type: DataTypes.STRING,
       allowNull: true,
     },
