@@ -12,7 +12,7 @@ A useless HTTP server for demonstration purposes.
 
 ## Installation
 
-- Clone from this repo `git clone https://github.com/bradyjcamp/basic-express-server.git`
+- Clone from this repo `git clone https://github.com/bradyjcamp/basic-api-server.git`
 - cd into basic-api-server
 - `npm install`
   - dotenv
