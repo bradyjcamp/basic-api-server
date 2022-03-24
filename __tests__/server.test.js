@@ -31,7 +31,11 @@ describe('Testing REST API', () => {
 
   
   test('Should read all from vehicle' , async () => {
-    let response = await request.get('/vehicles');
+    let response = await request.get('/vehicles').send({
+      class: 'test',
+      model: 'tester',
+      color: 'tested',
+    });
     
     expect(response.status).toEqual(200);
     expect(response.body.class).toEqual('test');
@@ -39,16 +43,43 @@ describe('Testing REST API', () => {
     expect(response.body.color).toEqual('tested');
   });
   
-  test('Should read from vehicle' , () => {
-  
+  test('Should read from vehicle' , async () => {
+    let response = await request.get('/vehicles/:id').send({
+      class: 'test',
+      model: 'tester',
+      color: 'tested',
+    });
+
+    expect(response.status).toEqual(200);
+    expect(response.body.class).toEqual('test');
+    expect(response.body.model).toEqual('tester');
+    expect(response.body.color).toEqual('tested');
   });
 
-  test('Should update a vehicle' , () => {
+  test('Should update a vehicle' , async () => {
+    let response = await request.put('/vehicles/:id').send({
+      class: 'test',
+      model: 'tester',
+      color: 'tested',
+    });
 
+    expect(response.status).toEqual(200);
+    expect(response.body.class).toEqual('test');
+    expect(response.body.model).toEqual('tester');
+    expect(response.body.color).toEqual('tested');
   });
 
-  test('Should delete a vehicle' , () => {
+  test('Should delete a vehicle' , async () => {
+    let response = await request.delete('/vehicles/:id').send({
+      class: 'test',
+      model: 'tester',
+      color: 'tested',
+    });
 
+    expect(response.status).toEqual(200);
+    expect(response.body.class).toEqual('test');
+    expect(response.body.model).toEqual('tester');
+    expect(response.body.color).toEqual('tested');
   });
 
 

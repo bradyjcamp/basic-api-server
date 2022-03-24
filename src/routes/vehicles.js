@@ -13,7 +13,7 @@ const addVehicle = async (req, res, next) => {
 };
 
 const getAllVehicles =  async (req, res, next) => {
-  let allVehicleData = await VehicleModel.read();
+  let allVehicleData = await VehicleModel.read(VehicleModel);
   res.status(200).send(allVehicleData);
 };
 
@@ -31,9 +31,13 @@ const updateVehicle = async (req, res, next) => {
 };
 
 const deleteVehicle = async (req, res, next) => {
-  let vehicle = req.params.id;
-  let responseData = await VehicleModel.delete(vehicle);
-  res.status(200).send(responseData);
+  let { id } = req.params;
+  let idNum = parseInt(id);
+  let query = { where: {id: idNum} };
+
+  let vehicleToRemove = await VehicleModel.findOne(query);
+  await VehicleModel.destoy(query);
+  res.status(200).send(vehicleToRemove);
 };
 
 
