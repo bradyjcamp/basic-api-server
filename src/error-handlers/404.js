@@ -1,8 +1,8 @@
-// 'use strict';
+'use strict';
 
-// function handleError404(req, res, next){
-//   res.status(404).send('not found');
-//   next();
-// }
+function handleError404(req, res, next){
+  res.status(404).send('not found');
+  next();
+}
 
-// module.exports = handleError404;
+module.exports = handleError404;
