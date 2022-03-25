@@ -44,69 +44,57 @@ describe('Testing REST API', () => {
 
   
   test('Should read all from vehicle' , async () => {
-    let response = await request.get('/vehicles').send();
+    let response = await request.get('/vehicles');
     
     expect(response.status).toEqual(200);
-    expect(response.body.class).toEqual('test');
-    expect(response.body.model).toEqual('tester');
-    expect(response.body.color).toEqual('tested');
+    expect(response.body[0].class).toEqual('test');
   });
 
   test('Should read all from persons' , async () => {
-    let response = await request.get('/person').send();
+    let response = await request.get('/person');
     
     expect(response.status).toEqual(200);
-    expect(response.body.name).toEqual('test');
-    expect(response.body.age).toEqual('tester');
-    expect(response.body.job).toEqual('tested');
+    expect(response.body[0].name).toEqual('test');
   });
   
   test('Should read from vehicle' , async () => {
-    let response = await request.get('/vehicles/1').send();
-    expect(response.status).toEqual(200);
-    expect(response.body.class).toEqual('test');
-    expect(response.body.model).toEqual('tester');
-    expect(response.body.color).toEqual('tested');
+    let response = await request.get('/vehicles/1');
+    expect(response.status).toBe(200);
+    expect(response.body.id).toEqual(1);
   });
 
   test('Should read from person' , async () => {
-    let response = await request.get('/person/1').send();
+    let response = await request.get('/person/1');
     expect(response.status).toEqual(200);
-    expect(response.body.name).toEqual('test');
-    expect(response.body.age).toEqual('tester');
-    expect(response.body.job).toEqual('tested');
+    expect(response.body.id).toEqual(1);
+
   });
 
   test('Should update a vehicle' , async () => {
-    let response = await request.put('/vehicles/1').send({
-      class: 'test',
-    });
+    let response = await request.put('/vehicles/1');
 
-    expect(response.status).toEqual(200);
-    expect(response.body).toEqual({id: 1});
+    expect(response.body.id).toEqual(1);
   });
 
   test('Should update a person' , async () => {
-    let response = await request.put('/person/1').send({
-      class: 'test',
-    });
+    let response = await request.put('/person/1');
 
     expect(response.status).toEqual(200);
-    expect(response.body).toEqual({id: 1});
+    expect(response.body.id).toEqual(1);
   });
 
   test('Should delete a vehicle' , async () => {
     let response = await request.delete('/vehicles/1');
 
     expect(response.status).toEqual(200);
-    expect(response.body).toEqual({id: 1});
+
   });
 
   test('Should delete a person' , async () => {
     let response = await request.delete('/person/1');
 
     expect(response.status).toEqual(200);
-    expect(response.body).toEqual({id: 1});
+
   });
 
 

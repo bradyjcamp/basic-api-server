@@ -18,19 +18,17 @@ const getAllVehicles =  async (req, res, next) => {
 };
 
 const getOneVehicle = async (req, res, next) => {
-  let specificVehicle = req.params.id;
-  let query = { where: {id: specificVehicle} };
+  let specificVehicle = parseInt(req.params.id);
 
-  let oneVehicle = await VehicleModel.findOne(query);
-  res.send(oneVehicle);
+  let oneVehicle = await VehicleModel.findOne({ where: {id: specificVehicle} });
+  res.status(200).json(oneVehicle);
 };
 
 const updateVehicle = async (req, res, next) => {
-  let specificVehicle = req.params.id;
-  let query = { where: {id: specificVehicle} };
+  let specificVehicle = parseInt(req.params.id);
 
-  let oneVehicle = await VehicleModel.update(query);
-  res.send(oneVehicle);
+  let oneVehicle = await VehicleModel.update({ where: {id: specificVehicle} });
+  res.status(200).json(oneVehicle);
 };
 
 const deleteVehicle = async (req, res, next) => {
@@ -45,9 +43,9 @@ const deleteVehicle = async (req, res, next) => {
 
 router.post('/vehicles', addVehicle);
 router.get('/vehicles', getAllVehicles);
-router.get('vehicle/:id', getOneVehicle);
-router.put('/vehicle/:id', updateVehicle);
-router.delete('/vehicle/:id', deleteVehicle);
+router.get('/vehicles/:id', getOneVehicle);
+router.put('/vehicles/:id', updateVehicle);
+router.delete('/vehicles/:id', deleteVehicle);
 
 
 
